@@ -58,7 +58,7 @@ function initvars()
 	gEnv.localhost = gEnv.prv ? "192" : "kanzaki";
 //	gEnv.oAddr = addrelts();
 //	gEnv.stInfo = stinfo();
-        gEnv.script = (function(l){return l.protocol + l.host + l.pathname;})(document.location);
+        gEnv.script = ((function(l){return l.protocol + '//' + l.host + l.pathname;})(document.location)).replace(/'/g,'&#39;').replace(/"/g,'&quot;');
 	linkattrs(); 
 	window.document.onkeypress = procKey;
 }
