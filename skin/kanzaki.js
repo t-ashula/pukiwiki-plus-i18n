@@ -125,7 +125,8 @@ function grddl()
 	if(String(document.location).match(/kanzaki.com\/memo/)) return;
 	if(x = document.getElementById('stinfo')){
 		l = (gEnv.docLang == 'ja') ? document.location + "%3Futf8" : document.location;
-		x.innerHTML += " <a href='http://www.w3.org/2000/06/webdata/xslt?xslfile=http://www.w3.org/2003/11/rdf-in-xhtml-processor&amp;xmlfile=" + l + "'><img src='/parts/grddl.png' alt='GRDDL' /> enhanced</a>.";
+		l = l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/,'&#39;').replace(/"/g,'&quot;');
+	  x.innerHTML += " <a href='http://www.w3.org/2000/06/webdata/xslt?xslfile=http://www.w3.org/2003/11/rdf-in-xhtml-processor&amp;xmlfile=" + l + "'><img src='/parts/grddl.png' alt='GRDDL' /> enhanced</a>.";
 	}
 }
 
@@ -145,7 +146,7 @@ function translink(){
 	if(navi = document.getElementById("banner")){
 		navi.innerHTML += (String(document.location).substr(0,12)=='http://babel') ?
 			"<p class='note' style='font-weight:normal'>This page is translated by machine. Might be very odd, but hope to be of your help.</p>" :
-			"<p class='dopo noprint' style='margin-bottom:0'><a href='http://babelfish.altavista.com/babelfish/urltrurl?url=" + document.location + "&amp;lp=ja_en' title='This is a trial link to machine translation of this document'>Babelfish J-&gt;E translation</a></p>";
+			"<p class='dopo noprint' style='margin-bottom:0'><a href='http://babelfish.altavista.com/babelfish/urltrurl?url=" + encodeURIComponent(document.location) + "&amp;lp=ja_en' title='This is a trial link to machine translation of this document'>Babelfish J-&gt;E translation</a></p>";
 	}
 	
 }
