@@ -58,11 +58,7 @@ function initvars()
 	gEnv.localhost = gEnv.prv ? "192" : "kanzaki";
 //	gEnv.oAddr = addrelts();
 //	gEnv.stInfo = stinfo();
-	if ( document.location.href.lastIndexOf('?') == -1 ) {
-		gEnv.script = document.location.href;
-	} else {
-		gEnv.script = document.location.href.substring(0,document.location.href.lastIndexOf('?'));
-	}
+        gEnv.script = (function(l){return l.protocol + l.host + l.pathname;})(document.location);
 	linkattrs(); 
 	window.document.onkeypress = procKey;
 }
@@ -331,7 +327,6 @@ function prepHd(heading, xid, i, ptocImg, ptocMsg){
 	heading.setAttribute("title",ptocMsg);
 	if(xid) gNumkeyLink[i+1] = xid;
 }
-
 //generate the popup TOC division
 function genTocDiv(lis){
 	(gToc = document.createElement("div")).setAttribute("id","poptoc");
